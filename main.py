@@ -21,7 +21,10 @@ Away_attendance = df.groupby(['Away'])['Attendance'].sum().reset_index(name='Att
 # Rename columns of Away_attendance
 Away_attendance.columns = ['Country', 'A_Attend']
 
+# Merge Home_attendance and Away_attendance dataframes
 merged_df = pd.merge(Home_attendance, Away_attendance, on='Country')
+
+# Calculate total attendance of each country
 merged_df['Total_Attendance'] = merged_df['H_Attend'] + merged_df['A_Attend']
 
 print(merged_df[['Country', 'Total_Attendance']])
